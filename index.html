@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Luxe - Le Saint Coran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0e17;
+            --secondary-dark: #0f1525;
+            --primary-blue: #1a237e;
+            --accent-blue: #283593;
+            --light-blue: #3949ab;
+            --gold: #d4af37;
+            --light-gold: #f4e4a6;
+            --white: #ffffff;
+            --light-gray: #e0e0e0;
+            --green-highlight: #4CAF50;
+            --arabic-font: 'Noto Naskh Arabic', 'Amiri', serif;
+            --french-font: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--french-font);
+            background-color: var(--primary-dark);
+            color: var(--light-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            font-family: var(--arabic-font);
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 160px);
+            padding: 30px 0;
+        }
+
+        /* Homepage Styles */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(26, 35, 126, 0.8)), url('https://images.unsplash.com/photo-1511377107391-116a9d5e5989?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-family: var(--arabic-font);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--light-gold);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .option-card {
+            background-color: var(--secondary-dark);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+        }
+
+        .option-card i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .option-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .option-card p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Surah/Juz Selection Page */
+        .selection-page {
+            display: none;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .page-header h2 {
+            font-size: 2.2rem;
+            color: var(--white);
+            font-family: var(--arabic-font);
+        }
+
+        .back-button {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: var(--french-font);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--light-blue);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-dark);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .selection-item {
+            background-color: var(--secondary-dark);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .selection-item:hover {
+            background-color: var(--accent-blue);
+            transform: scale(1.03);
+            border-color: var(--gold);
+        }
+
+        .selection-item.active {
+            background-color: var(--primary-blue);
+            border-color: var(--gold);
+        }
+
+        .selection-number {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--primary-dark);
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .selection-name {
+            font-size: 1.3rem;
+            color: var(--white);
+            font-family: var(--arabic-font);
+            margin-bottom: 5px;
+        }
+
+        .selection-meta {
+            font-size: 0.9rem;
+            color: var(--light-gold);
+        }
+
+        /* Quran Reader Page */
+        .quran-reader {
+            display: none;
+        }
+
+        .reader-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .surah-info {
+            text-align: center;
+            background-color: var(--secondary-dark);
+            padding: 20px;
+            border-radius: 10px;
+            flex-grow: 1;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .surah-info h2 {
+            font-size: 2rem;
+            color: var(--white);
+            font-family: var(--arabic-font);
+            margin-bottom: 10px;
+        }
+
+        .surah-info p {
+            color: var(--light-gold);
+        }
+
+        .audio-controls {
+            background-color: var(--secondary-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .reciter-select {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .reciter-select label {
+            font-size: 1.1rem;
+            color: var(--light-gold);
+        }
+
+        .reciter-select select {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .player button {
+            background-color: var(--gold);
+            color: var(--primary-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .player button:hover {
+            background-color: var(--light-gold);
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            background-color: var(--primary-dark);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--green-highlight);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .time-display {
+            color: var(--light-gold);
+            font-size: 1rem;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .ayat-container {
+            background-color: var(--secondary-dark);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .ayat-item {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        .ayat-item.active {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .ayat-number {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--primary-dark);
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-left: 15px;
+            font-family: var(--arabic-font);
+        }
+
+        .ayat-arabic {
+            font-size: 2.2rem;
+            text-align: right;
+            color: var(--white);
+            font-family: var(--arabic-font);
+            line-height: 1.8;
+            margin: 20px 0;
+            padding: 10px 0;
+            border-right: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .ayat-arabic.highlight {
+            border-right-color: var(--green-highlight);
+            background-color: rgba(76, 175, 80, 0.1);
+            padding-right: 10px;
+        }
+
+        .ayat-translation {
+            font-size: 1.3rem;
+            color: var(--light-gold);
+            text-align: left;
+            font-family: var(--french-font);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-dark);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--white);
+            font-family: var(--arabic-font);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            color: var(--light-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .selection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .option-card {
+                padding: 20px;
+            }
+            
+            .ayat-arabic {
+                font-size: 1.8rem;
+            }
+            
+            .ayat-translation {
+                font-size: 1.1rem;
+            }
+            
+            .reader-header {
+                flex-direction: column;
+            }
+            
+            .player {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 40px 15px;
+            }
+            
+            .selection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .selection-item {
+                padding: 15px;
+            }
+            
+            .ayat-container {
+                padding: 15px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--light-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-quran"></i>
+                    <div class="logo-text">Quran<span>Luxe</span></div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" id="nav-home" class="active">Accueil</a></li>
+                        <li><a href="#" id="nav-surah">Sourates</a></li>
+                        <li><a href="#" id="nav-juz">Juz</a></li>
+                        <li><a href="#" id="nav-recitations">Récitations</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Homepage -->
+            <div id="homepage" class="homepage">
+                <div class="hero">
+                    <h1>القُرْآنِ الكَرِيم</h1>
+                    <p>Le Saint Coran avec récitation, traduction et fonctionnalités interactives. Explorez la parole d'Allah avec une expérience immersive.</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" id="option-surah">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Les Sourates</h3>
+                        <p>Parcourez les 114 sourates du Coran avec traduction en français et récitation audio.</p>
+                    </div>
+                    
+                    <div class="option-card" id="option-juz">
+                        <i class="fas fa-bookmark"></i>
+                        <h3>Les Juz</h3>
+                        <p>Écoutez et lisez le Coran par partie (Juz) pour faciliter la récitation quotidienne.</p>
+                    </div>
+                    
+                    <div class="option-card" id="option-recitation">
+                        <i class="fas fa-play-circle"></i>
+                        <h3>Récitations</h3>
+                        <p>Écoutez le Coran récité par différents réciteurs, dont Yasser Al-Dosary.</p>
+                    </div>
+                    
+                    <div class="option-card" id="option-bookmark">
+                        <i class="fas fa-bookmark"></i>
+                        <h3>Marque-pages</h3>
+                        <p>Gardez une trace de vos versets préférés et de votre progression dans la lecture.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Surah Selection Page -->
+            <div id="surah-selection" class="selection-page">
+                <div class="page-header">
+                    <h2>Sélectionnez une Sourate</h2>
+                    <button class="back-button" id="back-from-surah"><i class="fas fa-arrow-left"></i> Retour</button>
+                </div>
+                
+                <input type="text" class="search-box" placeholder="Rechercher une sourate par nom ou numéro...">
+                
+                <div class="selection-grid" id="surah-grid">
+                    <!-- Surah list will be dynamically generated -->
+                </div>
+            </div>
+            
+            <!-- Juz Selection Page -->
+            <div id="juz-selection" class="selection-page">
+                <div class="page-header">
+                    <h2>Sélectionnez un Juz</h2>
+                    <button class="back-button" id="back-from-juz"><i class="fas fa-arrow-left"></i> Retour</button>
+                </div>
+                
+                <div class="selection-grid" id="juz-grid">
+                    <!-- Juz list will be dynamically generated -->
+                </div>
+            </div>
+            
+            <!-- Quran Reader Page -->
+            <div id="quran-reader" class="quran-reader">
+                <div class="reader-header">
+                    <button class="back-button" id="back-from-reader"><i class="fas fa-arrow-left"></i> Retour</button>
+                    
+                    <div class="surah-info">
+                        <h2 id="current-surah-name">Sourate Al-Fatiha</h2>
+                        <p id="current-surah-details">La Liminaire • 7 versets • Révélée à 
