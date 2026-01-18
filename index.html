@@ -25,6 +25,8 @@
             --white: #ffffff;
             --light-gray: #e0e0e0;
             --green-highlight: #4CAF50;
+            --error-red: #f44336;
+            --success-green: #4CAF50;
             --arabic-font: 'Noto Naskh Arabic', 'Amiri', serif;
             --french-font: 'Poppins', sans-serif;
         }
@@ -63,6 +65,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            cursor: pointer;
         }
 
         .logo i {
@@ -79,6 +82,67 @@
 
         .logo-text span {
             color: var(--gold);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .user-info i {
+            color: var(--gold);
+        }
+
+        .username {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            font-family: var(--french-font);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--gold);
+        }
+
+        .login-btn:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .signup-btn {
+            background-color: var(--gold);
+            color: var(--primary-dark);
+        }
+
+        .signup-btn:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-2px);
         }
 
         nav ul {
@@ -175,6 +239,138 @@
             font-size: 1.1rem;
         }
 
+        /* Authentication Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            background-color: var(--secondary-dark);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-header p {
+            color: var(--light-gold);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: var(--light-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light-gold);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-dark);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: var(--french-font);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-error {
+            color: var(--error-red);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-success {
+            color: var(--success-green);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--gold);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .modal-btn:hover {
+            background-color: var(--light-gold);
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--light-gray);
+        }
+
+        .switch-form a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
         /* Surah/Juz Selection Page */
         .selection-page {
             display: none;
@@ -199,16 +395,20 @@
             background-color: var(--accent-blue);
             color: var(--white);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 8px;
             font-family: var(--french-font);
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .back-button:hover {
             background-color: var(--light-blue);
+            transform: translateY(-2px);
         }
 
         .search-box {
@@ -338,6 +538,7 @@
             border-radius: 8px;
             font-size: 1rem;
             flex-grow: 1;
+            cursor: pointer;
         }
 
         .player {
@@ -357,6 +558,9 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .player button:hover {
@@ -472,6 +676,7 @@
             color: var(--white);
             font-family: var(--arabic-font);
             margin-bottom: 20px;
+            cursor: pointer;
         }
 
         .footer-links {
@@ -486,6 +691,7 @@
             color: var(--light-gray);
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -513,6 +719,12 @@
             
             .selection-grid {
                 grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            }
+            
+            .header-right {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-end;
             }
         }
 
@@ -548,138 +760,4 @@
             }
             
             .reader-header {
-                flex-direction: column;
-            }
-            
-            .player {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero {
-                padding: 40px 15px;
-            }
-            
-            .selection-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            }
-            
-            .selection-item {
-                padding: 15px;
-            }
-            
-            .ayat-container {
-                padding: 15px;
-            }
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--light-blue);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-book-quran"></i>
-                    <div class="logo-text">Quran<span>Luxe</span></div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" id="nav-home" class="active">Accueil</a></li>
-                        <li><a href="#" id="nav-surah">Sourates</a></li>
-                        <li><a href="#" id="nav-juz">Juz</a></li>
-                        <li><a href="#" id="nav-recitations">Récitations</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <!-- Homepage -->
-            <div id="homepage" class="homepage">
-                <div class="hero">
-                    <h1>القُرْآنِ الكَرِيم</h1>
-                    <p>Le Saint Coran avec récitation, traduction et fonctionnalités interactives. Explorez la parole d'Allah avec une expérience immersive.</p>
-                </div>
-                
-                <div class="options-grid">
-                    <div class="option-card" id="option-surah">
-                        <i class="fas fa-book-open"></i>
-                        <h3>Les Sourates</h3>
-                        <p>Parcourez les 114 sourates du Coran avec traduction en français et récitation audio.</p>
-                    </div>
-                    
-                    <div class="option-card" id="option-juz">
-                        <i class="fas fa-bookmark"></i>
-                        <h3>Les Juz</h3>
-                        <p>Écoutez et lisez le Coran par partie (Juz) pour faciliter la récitation quotidienne.</p>
-                    </div>
-                    
-                    <div class="option-card" id="option-recitation">
-                        <i class="fas fa-play-circle"></i>
-                        <h3>Récitations</h3>
-                        <p>Écoutez le Coran récité par différents réciteurs, dont Yasser Al-Dosary.</p>
-                    </div>
-                    
-                    <div class="option-card" id="option-bookmark">
-                        <i class="fas fa-bookmark"></i>
-                        <h3>Marque-pages</h3>
-                        <p>Gardez une trace de vos versets préférés et de votre progression dans la lecture.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Surah Selection Page -->
-            <div id="surah-selection" class="selection-page">
-                <div class="page-header">
-                    <h2>Sélectionnez une Sourate</h2>
-                    <button class="back-button" id="back-from-surah"><i class="fas fa-arrow-left"></i> Retour</button>
-                </div>
-                
-                <input type="text" class="search-box" placeholder="Rechercher une sourate par nom ou numéro...">
-                
-                <div class="selection-grid" id="surah-grid">
-                    <!-- Surah list will be dynamically generated -->
-                </div>
-            </div>
-            
-            <!-- Juz Selection Page -->
-            <div id="juz-selection" class="selection-page">
-                <div class="page-header">
-                    <h2>Sélectionnez un Juz</h2>
-                    <button class="back-button" id="back-from-juz"><i class="fas fa-arrow-left"></i> Retour</button>
-                </div>
-                
-                <div class="selection-grid" id="juz-grid">
-                    <!-- Juz list will be dynamically generated -->
-                </div>
-            </div>
-            
-            <!-- Quran Reader Page -->
-            <div id="quran-reader" class="quran-reader">
-                <div class="reader-header">
-                    <button class="back-button" id="back-from-reader"><i class="fas fa-arrow-left"></i> Retour</button>
-                    
-                    <div class="surah-info">
-                        <h2 id="current-surah-name">Sourate Al-Fatiha</h2>
-                        <p id="current-surah-details">La Liminaire • 7 versets • Révélée à 
+                flex
